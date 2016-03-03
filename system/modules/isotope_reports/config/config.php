@@ -14,7 +14,7 @@
 /**
  * Backend modules
  */
-array_insert($GLOBALS['BE_MOD']['isotope'], 2, array
+array_insert($GLOBALS['BE_MOD']['isotope'], (in_array('isotope_coupons', \ModuleLoader::getActive(), true) ? 3 : 2), array
 (
     'reports' => array
     (
