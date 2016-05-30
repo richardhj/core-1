@@ -36,6 +36,7 @@
         "psr-0": {
             "Isotope\\": [
                 "system/modules/isotope/library",
+                "system/modules/isotope_coupons/library",
                 "system/modules/isotope_reports/library",
                 "system/modules/isotope_rules/library"
             ],
