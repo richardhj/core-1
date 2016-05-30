@@ -32,3 +32,7 @@ $GLOBALS['TL_LANG']['tl_iso_coupon']['uncheck']        = ['Mark as available', '
 $GLOBALS['TL_LANG']['tl_iso_coupon']['checkConfirm']    = 'Are you sure to mark this coupon code as REDEEMED?';
 $GLOBALS['TL_LANG']['tl_iso_coupon']['uncheckConfirm']  = 'Are you sure to mark this coupon code as AVAILABLE?';
 $GLOBALS['TL_LANG']['tl_iso_coupon']['codeUnavailable'] = 'not yet available';
+$GLOBALS['TL_LANG']['tl_iso_coupon']['status']['draft'] = 'Draft';
+$GLOBALS['TL_LANG']['tl_iso_coupon']['status']['available'] = 'Available';
+$GLOBALS['TL_LANG']['tl_iso_coupon']['status']['redeemend'] = 'Redeemed';
+$GLOBALS['TL_LANG']['tl_iso_coupon']['status']['cancelled'] = 'Cancelled';

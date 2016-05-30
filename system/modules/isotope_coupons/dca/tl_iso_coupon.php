@@ -126,6 +126,7 @@ $GLOBALS['TL_DCA']['tl_iso_coupon'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_iso_coupon']['status'],
             'filter'                  => true,
             'options'                 => ['draft', 'available', 'redeemed', 'cancelled'],
+            'reference'               => &$GLOBALS['TL_LANG']['tl_iso_coupon']['status'],
             'sql'                     => "varchar(16) NOT NULL",
         ),
     )
