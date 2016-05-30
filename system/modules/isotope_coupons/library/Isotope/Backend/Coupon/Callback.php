@@ -12,6 +12,8 @@
 
 namespace Isotope\Backend\Coupon;
 
+use Haste\Http\Response\HtmlResponse;
+
 class Callback extends \Backend
 {
 
@@ -70,7 +72,7 @@ class Callback extends \Backend
             $attributes = 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['tl_iso_coupon']['uncheckConfirm'] . '\'))return false;Backend.getScrollOffset()"';
         }
 
-        return '<a href="'.\Backend::addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
+        return '<a href="'.\Backend::addToUrl($href . '&amp;id=' . $row['id']).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
     }
 
     /**
@@ -80,6 +82,30 @@ class Callback extends \Backend
      */
     public function toggleStatus($dc)
     {
+        $coupon = \Database::getInstance()->prepare("SELECT * FROM tl_iso_coupon WHERE id=?")->execute($dc->id);
+        
+        switch ($coupon->status) {
+            case 'available':
+                \Database::getInstance()
+                    ->prepare("UPDATE tl_iso_coupon SET status=? WHERE id=?")
+                    ->execute('redeemed', $coupon->id)
+                ;
+                break;
+
+            case 'redeemed':
+                \Database::getInstance()
+                     ->prepare("UPDATE tl_iso_coupon SET status=? WHERE id=?")
+                     ->execute('available', $coupon->id)
+                ;
+                break;
+
+            case 'draft':
+            case 'cancelled':
+            default:
+                $response = new HtmlResponse('', 400);
+                $response->send();
+        }
+
         \Controller::redirect(\System::getReferer());
     }
 }
