@@ -10,9 +10,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-namespace Isotope\Model;
-
-use Isotope\Model\Product\Standard;
+namespace Isotope\Model\Product;
 
 class Coupon extends Standard
 {
