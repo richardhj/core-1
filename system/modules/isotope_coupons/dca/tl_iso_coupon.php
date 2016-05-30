@@ -45,7 +45,7 @@ $GLOBALS['TL_DCA']['tl_iso_coupon'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('document_number', 'product_name', 'code'),
+            'fields'                  => array('document_number', 'product_name', 'price', 'code'),
             'showColumns'             => true,
             'label_callback'          => array('Isotope\Backend\Coupon\Callback', 'generateLabel')
         ),
@@ -108,6 +108,13 @@ $GLOBALS['TL_DCA']['tl_iso_coupon'] = array
             'search'                  => true,
             'sorting'                 => true,
             'sql'                     => "varchar(255) NOT NULL",
+        ),
+        'price' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_iso_coupon']['price'],
+            'search'                  => true,
+            'sorting'                 => true,
+            'sql'                     => "decimal(12,2) NOT NULL default '0.00'",
         ),
         'owner' => array
         (

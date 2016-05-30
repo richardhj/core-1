@@ -16,11 +16,12 @@ use Haste\Http\Response\HtmlResponse;
 
 class Callback extends \Backend
 {
+    const CODE_FIELD = 3;
 
     public function generateLabel($row, $label, \DataContainer $dc, $args)
     {
-        if ($args[2] == '') {
-            $args[2] = sprintf('<span style="color:#ccc">%s</span>', $GLOBALS['TL_LANG']['tl_iso_coupon']['codeUnavailable']);
+        if ($args[self::CODE_FIELD] == '') {
+            $args[self::CODE_FIELD] = sprintf('<span style="color:#ccc">%s</span>', $GLOBALS['TL_LANG']['tl_iso_coupon']['codeUnavailable']);
         } else {
             switch ($row['status']) {
                 case 'draft':
@@ -41,7 +42,7 @@ class Callback extends \Backend
                     break;
             }
 
-            $args[2] = sprintf('<span style="color:%s">%s</span>', $color, $row['code']);
+            $args[self::CODE_FIELD] = sprintf('<span style="color:%s">%s</span>', $color, $row['code']);
         }
 
         return $args;

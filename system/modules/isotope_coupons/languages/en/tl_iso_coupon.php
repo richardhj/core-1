@@ -15,6 +15,7 @@
 $GLOBALS['TL_LANG']['tl_iso_coupon']['dateAdded']       = ['Added on'];
 $GLOBALS['TL_LANG']['tl_iso_coupon']['document_number'] = ['Order number'];
 $GLOBALS['TL_LANG']['tl_iso_coupon']['product_name']    = ['Product name'];
+$GLOBALS['TL_LANG']['tl_iso_coupon']['price']           = ['Price'];
 $GLOBALS['TL_LANG']['tl_iso_coupon']['owner']           = ['Owner'];
 $GLOBALS['TL_LANG']['tl_iso_coupon']['code']            = ['Code'];
 $GLOBALS['TL_LANG']['tl_iso_coupon']['status']          = ['Status'];
