@@ -14,5 +14,27 @@ namespace Isotope\Model\Product;
 
 class Coupon extends Standard
 {
-
+    /**
+     * 
+     *
+     * @param array $chars
+     * @param int   $length
+     *
+     * @return string
+     */
+    public static function generateRandomCode(array $chars, $length)
+    {
+        return implode(
+            '',
+            array_intersect_key(
+                $chars,
+                array_flip(
+                    array_rand(
+                        $chars,
+                        $length
+                    )
+                )
+            )
+        );
+    }
 }

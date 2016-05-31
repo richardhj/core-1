@@ -22,6 +22,13 @@ array_insert($GLOBALS['BE_MOD']['isotope'], 2, [
     ]
 ]);
 
+
+/**
+ * Hooks
+ */
+$GLOBALS['ISO_HOOKS']['postCheckout'][] = array('Isotope\EventListener\PostCheckoutCoupons', 'onPostCheckout');
+
+
 /**
  * Products
  */

@@ -34,6 +34,11 @@ namespace Isotope\Model;
  * @property bool   $force_variant_options
  * @property bool   $shipping_exempt
  * @property bool   $downloads
+ *
+ * @property string $coupon_prefix
+ * @property int    $coupon_numbers
+ * @property string $coupon_alphabet
+ * @property int    $coupon_chars
  */
 class ProductType extends \Model
 {

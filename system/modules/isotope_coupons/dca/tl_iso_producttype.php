@@ -27,26 +27,17 @@ $GLOBALS['TL_DCA']['tl_iso_producttype']['fields']['coupon_info']['input_field_c
         return '';
     }
 
-    $alphabet = str_split($dc->activeRecord->coupon_alphabet);
     $code = '';
 
     if ($dc->activeRecord->coupon_prefix) {
-        $code = $dc->activeRecord->coupon_prefix . '-';
+        $code = Controller::replaceInsertTags($dc->activeRecord->coupon_prefix, false) . '-';
     }
 
     $code .= str_pad('1', $dc->activeRecord->coupon_numbers, '0', STR_PAD_LEFT) . '-';
 
-    $code .= implode(
-        '',
-        array_intersect_key(
-            $alphabet,
-            array_flip(
-                array_rand(
-                    $alphabet,
-                    $dc->activeRecord->coupon_chars
-                )
-            )
-        )
+    $code .= \Isotope\Model\Product\Coupon::generateRandomCode(
+        str_split($dc->activeRecord->coupon_alphabet),
+        $dc->activeRecord->coupon_chars
     );
 
     return '<p class="tl_info" style="margin-top:10px">' . sprintf($GLOBALS['TL_LANG']['tl_iso_producttype']['coupon_info'], $code) . '</p>';
