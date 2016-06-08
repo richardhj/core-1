@@ -34,6 +34,8 @@ $GLOBALS['TL_LANG']['tl_iso_payment']['trans_type']                             
 $GLOBALS['TL_LANG']['tl_iso_payment']['paybyway_merchant_id']                   = array('Merchant ID', 'Please enter your Paybyway merchant ID. The sub-merchant ID is listed in the sub-merchants page in the merchant UI.');
 $GLOBALS['TL_LANG']['tl_iso_payment']['paybyway_private_key']                   = array('Private Key', 'Please enter your Paybyway private key.');
 $GLOBALS['TL_LANG']['tl_iso_payment']['paypal_account']                         = array('PayPal Account', 'Enter the default email address from your PayPal-Account. Note: Check the correct spelling, and case-sensitive.');
+$GLOBALS['TL_LANG']['tl_iso_payment']['paypal_plus_client']                     = array('Client ID', 'Enter your PayPal Client ID. You must create an application on the PayPal portal to get the access details.');
+$GLOBALS['TL_LANG']['tl_iso_payment']['paypal_plus_secret']                     = array('Secret', 'Enter your PayPal API secret.');
 $GLOBALS['TL_LANG']['tl_iso_payment']['payflowpro_user']                        = array('Paypal Payflow Pro username', '');
 $GLOBALS['TL_LANG']['tl_iso_payment']['payflowpro_vendor']                      = array('Paypal Payflow Pro vendor', 'An alphanumeric string of about 10 characters.');
 $GLOBALS['TL_LANG']['tl_iso_payment']['payflowpro_partner']                     = array('Paypal Payflow Pro partner', 'Case-sensitive! Usual partner Ids are either "PayPal" or "PayPalUK".');
