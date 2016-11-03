@@ -63,6 +63,8 @@
                 }
             }
 
+            addEventListener(window, 'isotopeProductReload', Isotope.hideBox);
+
             overlay.style.display = 'block';
 
             box.innerHTML = message;
@@ -213,14 +215,17 @@
 
                 registerEvents(formParent, config);
 
-                Isotope.hideBox();
-
                 if (scripts) {
                     script = _doc.createElement('script');
                     script.text = scripts;
                     _doc.head.appendChild(script);
                     _doc.head.removeChild(script);
                 }
+
+                var reloadEvent = new CustomEvent('isotopeProductReload', {
+                    'detail': config
+                });
+                window.dispatchEvent(reloadEvent);
             }
 
             if (config.attributes) {
