@@ -25,6 +25,7 @@ use Isotope\Model\Product;
 use Isotope\Model\Product\Standard;
 use Isotope\Model\ProductCollection\Cart;
 use Isotope\Model\ProductCollection\Order;
+use Isotope\Model\ProductCollection\Wishlist;
 use Isotope\Model\ProductCollectionItem;
 use Isotope\Model\ProductCollectionSurcharge;
 
@@ -163,6 +164,36 @@ class Frontend extends \Frontend
         }
 
         \Controller::reload();
+    }
+
+    /**
+     * Callback for add_to_wishlist button
+     *
+     * @param IsotopeProduct $objProduct
+     * @param array          $arrConfig
+     */
+    public function addToWishlist(IsotopeProduct $objProduct, array $arrConfig = array())
+    {
+        $wishlistId = (int) \Input::post('add_to_wishlist_option');
+
+        if (0 === $wishlistId || ($wishlist = Wishlist::findByIdForCurrentUser($wishlistId)) === null) {
+            $wishlist = Wishlist::createForCurrentUser();
+        }
+
+        if ($wishlist->addProduct($objProduct, 1, $arrConfig) !== false) {
+            Message::addConfirmation($GLOBALS['TL_LANG']['MSC']['addedToWishlist']);
+
+            if (!$arrConfig['module']->iso_wishlistJumpTo) {
+                \Controller::reload();
+            }
+
+            \Controller::redirect(
+                Url::addQueryString(
+                    'id=' . $wishlist->id . '&amp;continue=' . base64_encode(\Environment::get('request')),
+                    $arrConfig['module']->iso_wishlistJumpTo
+                )
+            );
+        }
     }
 
     /**

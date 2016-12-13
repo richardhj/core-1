@@ -19,6 +19,7 @@ use Isotope\Model\Config;
 use Isotope\Model\Product;
 use Isotope\Model\ProductCollection\Cart;
 use Isotope\Model\ProductCollection\Favorites;
+use Isotope\Model\ProductCollection\Wishlist;
 use Isotope\Model\ProductCollectionItem;
 use Isotope\Model\ProductPrice;
 use Isotope\Model\RequestCache;
@@ -415,6 +416,22 @@ class Isotope extends \Controller
                 'label'    => $GLOBALS['TL_LANG']['MSC']['buttonLabel'][$isFavorited ? 'remove_from_favorites' : 'add_to_favorites'],
                 'callback' => array('\Isotope\Frontend', 'toggleFavorites'),
                 'class'    => $isFavorited ? 'active' : '',
+            );
+
+            $options   = [['label' => $GLOBALS['TL_LANG']['MSC']['defaultWishlistLabel'], 'value' => '']];
+            $wishlists = Wishlist::findAllForCurrentUser();
+
+            if (null !== $wishlists) {
+                $options = [];
+                foreach ($wishlists as $wishlist) {
+                    $options[] = ['label' => $wishlist->getName(), 'value' => $wishlist->id];
+                }
+            }
+
+            $arrButtons['add_to_wishlist'] = array(
+                'label'    => $GLOBALS['TL_LANG']['MSC']['buttonLabel']['add_to_wishlist'],
+                'callback' => array('\Isotope\Frontend', 'addToWishlist'),
+                'options'  => $options,
             );
         }
 

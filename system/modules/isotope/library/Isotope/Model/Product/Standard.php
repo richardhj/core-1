@@ -11,6 +11,7 @@
 
 namespace Isotope\Model\Product;
 
+use Contao\FormSelectMenu;
 use Haste\Generator\RowClass;
 use Haste\Units\Mass\Weight;
 use Haste\Units\Mass\WeightAggregate;
@@ -25,7 +26,6 @@ use Isotope\Isotope;
 use Isotope\Model\Attribute;
 use Isotope\Model\Gallery;
 use Isotope\Model\Gallery\Standard as StandardGallery;
-use Isotope\Model\Product;
 use Isotope\Model\ProductCollectionItem;
 use Isotope\Model\ProductPrice;
 use Isotope\Model\ProductType;
@@ -505,6 +505,20 @@ class Standard extends AbstractProduct implements WeightAggregate, IsotopeProduc
             }
 
             $arrButtons = array_intersect_key($arrButtons, array_flip($arrConfig['buttons']));
+
+            foreach ($arrButtons as $name => &$buttonConfig) {
+                if (is_array($buttonConfig['options'])) {
+                    $widget = new FormSelectMenu(
+                        array(
+                            'id' => $name . '_option',
+                            'name' => $name . '_option',
+                            'options' => $buttonConfig['options'],
+                        )
+                    );
+
+                    $buttonConfig['options_html'] = $widget->parse();
+                }
+            }
         }
 
         if (\Input::post('FORM_SUBMIT') == $this->getFormId() && !$this->doNotSubmit) {
