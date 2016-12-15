@@ -30,7 +30,8 @@
 <label for="quantity_requested_<?php echo $this->raw['id']; ?>"><?php echo $GLOBALS['TL_LANG']['MSC']['quantity']; ?>:</label> <input type="text" class="text" id="quantity_requested_<?php echo $this->raw['id']; ?>" name="quantity_requested" placeholder="<?php echo $this->minimum_quantity; ?>" maxlength="10">
 </div>
 <?php endif; ?>
-<?php foreach( $this->buttons as $name => $button ): ?>
+<?php foreach ($this->buttons as $name => $button): ?>
+    <?= $button['options_html']; ?>
     <input type="submit" class="submit <?php echo $name; ?> <?= $button['class'] ?>" name="<?php echo $name; ?>" value="<?php echo $button['label']; ?>">
 <?php endforeach; ?>
 </div>
